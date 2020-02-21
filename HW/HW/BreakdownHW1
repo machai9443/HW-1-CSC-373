@@ -1,0 +1,43 @@
+/*
+size_t list_occurrences(const node* head_ptr, const node::value_type& target)
+Precondition: head_ptr is the head pointer of a linked list.
+
+
+size_t list_occurrences(const node* head_ptr, const node::value_type& target){
+        const node *cursor;
+        size_t count = 0;
+        for (cursor = head_ptr; cursor != NULL; cursor = cursor ->link())
+        count++; increases value until cursor is NULL
+        return count;
+      }
+Postcondition: The return value is the count of the number of times
+target appears as the data portion of a node on the linked list.
+The linked list itself is unchanged.
+
+
+
+//     Precondition: head_ptr is the head pointer of a linked list.
+void list_tail_attach(node*& head_ptr, const node::value_type& entry){        **Note that node*(&) is a reference from above code
+node *last_node = new node;
+last_node->set_data(entry); //data field
+last_node->set_link(NULL);  //link field
+if(head_ptr == NULL) // if the cursor is NULL, then head_ptr becomes last_node that has set_data and set_link(meaning it is a node itself and not ptr)
+  {
+      head_ptr = last_node; //becomes cursor at tail of list
+        }
+        else
+        {
+            node *tail_ptr = new node; //if head_ptr is not NULL then a new node is made with head_ptr becoming the new node tail_ptr. 
+            tail_ptr = head_ptr;
+            while(tail_ptr->link() != NULL)
+            {
+                tail_ptr = tail_ptr->link();
+            }
+            tail_ptr->set_link(last_node);
+            //the whole else enables tail_ptr to take inputs from attach_tail and insert it into list. Note that if else is removed, you will only get the first number of the list, other inputs are ignored.
+        }
+Postcondition: A new node containing the given entry has been added at the tail of the linked list; if this happens to be the first node of the linked list, then head_ptr now points to this node (otherwise head_ptr is unchanged).
+
+
+
+*/
